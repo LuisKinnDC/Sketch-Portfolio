@@ -1,0 +1,34 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.ssr-smoke
+
+# Variables de entorno: nunca deben subirse
+.env
+.env.*
+!.env.example
+
+# Originales pesados sin procesar. La versión web optimizada sí se sube
+# (public/foto-perfil.jpg); el original de 2,3 MB se queda en tu disco.
+assets-originales/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

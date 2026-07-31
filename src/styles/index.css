@@ -1,0 +1,403 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* Dark mode por clase en <html>, controlado desde useTheme() */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   PALETA — "Engineer's Sketchbook"
+   Los tokens semánticos apuntan a variables crudas que se reescriben en .dark,
+   así una sola utilidad (bg-paper, text-ink…) funciona en ambos temas.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Papel y tintas */
+  --raw-paper: #fdf8f8;
+  --raw-paper-raised: #ffffff;
+  --raw-paper-sunken: #f7f3f2;
+  --raw-paper-edge: #f1edec;
+  --raw-paper-deep: #e5e2e1;
+
+  --raw-ink: #1c1b1b;
+  --raw-ink-soft: #5e5e5e;
+  --raw-ink-faint: #858383;
+
+  --raw-rule: #747878;
+  --raw-rule-soft: #c4c7c7;
+  --raw-grid: rgb(28 27 27 / 0.06);
+
+  /* Acentos */
+  --raw-blueprint: #487ef8;
+  --raw-blueprint-deep: #0040a2;
+  --raw-blueprint-pale: #dae2ff;
+  --raw-highlighter: #ffd166;
+  --raw-on-highlighter: #1c1b1b;
+  --raw-error: #ba1a1a;
+
+  /* Sombra dura de tinta */
+  --raw-shadow-ink: #000000;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Blueprint invertido: papel de cianotipo, tinta clara */
+  --raw-paper: #101319;
+  --raw-paper-raised: #191d26;
+  --raw-paper-sunken: #0b0d12;
+  --raw-paper-edge: #1f242f;
+  --raw-paper-deep: #2a3140;
+
+  --raw-ink: #e9e6e1;
+  --raw-ink-soft: #9ba3af;
+  --raw-ink-faint: #6b7482;
+
+  --raw-rule: #8891a0;
+  --raw-rule-soft: #39414f;
+  --raw-grid: rgb(233 230 225 / 0.07);
+
+  --raw-blueprint: #7aa2ff;
+  --raw-blueprint-deep: #b2c8ff;
+  --raw-blueprint-pale: #1e2a44;
+  --raw-highlighter: #ffc94d;
+  --raw-on-highlighter: #17140c;
+  --raw-error: #ff6b6b;
+
+  --raw-shadow-ink: #000000;
+}
+
+@theme inline {
+  /* --- Color --- */
+  --color-paper: var(--raw-paper);
+  --color-paper-raised: var(--raw-paper-raised);
+  --color-paper-sunken: var(--raw-paper-sunken);
+  --color-paper-edge: var(--raw-paper-edge);
+  --color-paper-deep: var(--raw-paper-deep);
+
+  --color-ink: var(--raw-ink);
+  --color-ink-soft: var(--raw-ink-soft);
+  --color-ink-faint: var(--raw-ink-faint);
+
+  --color-rule: var(--raw-rule);
+  --color-rule-soft: var(--raw-rule-soft);
+
+  --color-blueprint: var(--raw-blueprint);
+  --color-blueprint-deep: var(--raw-blueprint-deep);
+  --color-blueprint-pale: var(--raw-blueprint-pale);
+  --color-highlighter: var(--raw-highlighter);
+  --color-on-highlighter: var(--raw-on-highlighter);
+  --color-error: var(--raw-error);
+
+  /* --- Tipografía --- */
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Space Mono', ui-monospace, 'Courier New', monospace;
+  --font-code: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-display-xl: clamp(2.75rem, 7vw, 4.5rem);
+  --text-display-xl--line-height: 1.02;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 800;
+
+  --text-display-lg: clamp(2rem, 5vw, 3rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 800;
+
+  --text-headline: clamp(1.5rem, 3vw, 2rem);
+  --text-headline--line-height: 1.18;
+  --text-headline--letter-spacing: -0.01em;
+  --text-headline--font-weight: 700;
+
+  --text-headline-sm: 1.25rem;
+  --text-headline-sm--line-height: 1.25;
+  --text-headline-sm--font-weight: 700;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-code: 0.875rem;
+  --text-code--line-height: 1.45;
+  --text-code--font-weight: 500;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.1;
+  --text-label--letter-spacing: 0.08em;
+  --text-label--font-weight: 700;
+
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1.2;
+  --text-micro--letter-spacing: 0.1em;
+  --text-micro--font-weight: 700;
+
+  /* --- Layout --- */
+  --spacing-gutter: 1.5rem;
+  --container-page: 1200px;
+
+  /* --- Radios: casi nulos, esto es papel milimetrado --- */
+  --radius-xs: 0.0625rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.1875rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+
+  /* --- Animaciones --- */
+  --animate-drift: drift 7s ease-in-out infinite;
+  --animate-jiggle: jiggle 0.28s linear infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  50% {
+    transform: rotate(1deg) translate(2px, -3px);
+  }
+}
+
+@keyframes jiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0.9deg);
+  }
+  75% {
+    transform: rotate(-0.9deg);
+  }
+}
+
+@keyframes draw-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  * {
+    border-color: var(--color-rule-soft);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /*
+     * Único punto donde se compensa el header sticky al saltar a una sección.
+     * `--header-h` la mide y publica el propio Header; el margen extra es el
+     * aire que queda entre la barra y el título de la sección.
+     *
+     * No añadas `scroll-mt-*` a las secciones: se sumaría a esto y la sección
+     * aterrizaría más abajo de donde el scroll-spy la busca.
+     */
+    scroll-padding-top: calc(var(--header-h, 4rem) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-highlighter);
+    color: var(--color-on-highlighter);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-blueprint);
+    outline-offset: 3px;
+  }
+
+  /* Respeta a quien pide menos movimiento: apaga todo lo decorativo */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   PRIMITIVAS DE BOCETO
+   ========================================================================== */
+
+@utility paper-grid {
+  background-image:
+    linear-gradient(to right, var(--raw-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--raw-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility paper-dots {
+  background-image: radial-gradient(var(--raw-grid) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+}
+
+/* Marco de tinta con sombra dura desplazada — el gesto central del sistema */
+@utility sketch-frame {
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@utility sketch-frame-lift {
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+  }
+}
+
+@utility sketch-frame-dashed {
+  border: 2px dashed var(--color-rule);
+}
+
+/* Cinta adhesiva para etiquetas y tags */
+@utility tape {
+  background-color: color-mix(in srgb, var(--color-paper-edge) 85%, transparent);
+  border: 1px dashed var(--color-rule);
+}
+
+/* Trazo de marcador fluorescente sobre texto */
+@utility marker-swipe {
+  background-image: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--color-highlighter) 45%, transparent) 0%,
+    color-mix(in srgb, var(--color-highlighter) 90%, transparent) 100%
+  );
+  padding-inline: 0.25rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Nodo con radio orgánico: parece dibujado a pulso */
+@utility node-blob {
+  border-radius: 55% 45% 53% 47% / 46% 54% 46% 54%;
+}
+
+@utility node-blob-alt {
+  border-radius: 47% 53% 44% 56% / 55% 45% 55% 45%;
+}
+
+/* Campo de formulario tipo renglón de cuaderno */
+@utility ruled-input {
+  border: 0;
+  border-bottom: 2px dashed var(--color-rule);
+  background: transparent;
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+
+  &::placeholder {
+    color: var(--color-ink-faint);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom-style: solid;
+    border-bottom-color: var(--color-blueprint);
+  }
+
+  /* Cuando ya tiene contenido, el renglón se vuelve sólido */
+  &:not(:placeholder-shown) {
+    border-bottom-style: solid;
+    border-bottom-color: var(--color-ink);
+  }
+}
+
+@utility wavy-link {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+@utility hover-jiggle {
+  &:hover {
+    animation: var(--animate-jiggle);
+  }
+}
+
+/* Trazo SVG que se dibuja solo al entrar en viewport */
+@utility draw-in {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: draw-stroke 1.6s ease-out forwards;
+}
+
+/* ==========================================================================
+   UTILIDADES VARIAS
+   ========================================================================== */
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Cursor lápiz global, activable desde ajustes */
+.cursor-pencil,
+.cursor-pencil * {
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 3L6 21L10 13L18 18L21 15L13 11.5L18 10L3 3Z' fill='white' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E")
+      2 2,
+    auto;
+}
+
+.cursor-pencil a,
+.cursor-pencil button,
+.cursor-pencil [role='button'] {
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4 20L5 15L16 4L20 8L9 19L4 20Z' fill='%23FFD166' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M14 6L18 10' stroke='black' stroke-width='2'/%3E%3C/svg%3E")
+      3 22,
+    pointer;
+}
+
+/* La barra de scroll también es parte del cuaderno */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper-sunken);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink);
+    border: 3px solid var(--color-paper-sunken);
+  }
+}

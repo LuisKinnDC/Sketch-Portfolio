@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Luis Kinder Flores De La Cruz | Engineer's Sketchbook</title>
+    <meta
+      name="description"
+      content="Portafolio de Luis Kinder Flores De La Cruz — Ingeniero de Sistemas y Software Developer. Arquitecturas simples, eficientes y escalables, dibujadas con precisión de ingeniero."
+    />
+    <meta name="author" content="Luis Kinder Flores De La Cruz" />
+    <meta name="theme-color" content="#fdf8f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101319" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content="Luis Kinder Flores De La Cruz | Engineer's Sketchbook" />
+    <meta
+      property="og:description"
+      content="Ingeniero de Sistemas & Software Developer. Transformo problemas complejos en arquitecturas simples, eficientes y escalables."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Aplica el tema antes del primer paint para evitar el flash de tema claro.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('lk-theme')
+          var dark =
+            stored === 'dark' ||
+            (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {
+          /* localStorage bloqueado: se queda en claro */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
