@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { BookText, Check, ExternalLink, FolderGit2, Star } from 'lucide-react'
+import { BookText, Check, Download, ExternalLink, FolderGit2, Star, type LucideIcon } from 'lucide-react'
 import { projects, type Project } from '@/data/content'
 import { Reveal, Section, SectionHead, SketchButton, TapeTag } from '@/components/ui/primitives'
 import { BlueprintDiagram } from '@/components/ui/BlueprintDiagram'
+import { ProjectShots } from '@/components/ui/ProjectShots'
 import { cn } from '@/lib/cn'
 import { usePrefersReducedMotion } from '@/lib/hooks'
 
@@ -17,7 +18,7 @@ export function Projects() {
   // nunca ofrece una opción que lleve a una rejilla vacía.
   const categories = useMemo(() => {
     const present = new Set(projects.map((p) => p.category))
-    return [ALL, ...(['Web', 'App'] as const).filter((c) => present.has(c))]
+    return [ALL, ...(['Web', 'App', 'Escritorio'] as const).filter((c) => present.has(c))]
   }, [])
 
   const visible = useMemo(
@@ -114,7 +115,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <span className="font-code text-code text-ink-faint shrink-0">{project.draft}</span>
       </header>
 
-      <BlueprintDiagram variant={project.diagram} />
+      {/* Si hay capturas reales mandan ellas; el diagrama es el respaldo. */}
+      {project.shots?.length ? (
+        <ProjectShots shots={project.shots} title={project.title} />
+      ) : (
+        <BlueprintDiagram variant={project.diagram} />
+      )}
 
       <ul className="flex flex-wrap gap-2">
         {project.stack.map((tech) => (
@@ -164,21 +170,46 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       <footer className="border-ink mt-auto flex flex-wrap gap-3 border-t border-dashed pt-4">
         {project.links.demo && (
-          <SketchButton as="a" href={project.links.demo} variant="primary" className="px-4 py-2.5">
-            <ExternalLink size={16} /> Demo
-          </SketchButton>
+          <ProjectLink href={project.links.demo} icon={ExternalLink} label="Demo" />
+        )}
+        {project.links.download && (
+          <ProjectLink href={project.links.download} icon={Download} label="Descargar" />
         )}
         {project.links.docs && (
-          <SketchButton as="a" href={project.links.docs} variant="primary" className="px-4 py-2.5">
-            <BookText size={16} /> API Docs
-          </SketchButton>
+          <ProjectLink href={project.links.docs} icon={BookText} label="API Docs" />
         )}
         {project.links.source && (
-          <SketchButton as="a" href={project.links.source} variant="outline" className="px-4 py-2.5">
-            <FolderGit2 size={16} /> Código
-          </SketchButton>
+          <ProjectLink href={project.links.source} icon={FolderGit2} label="Código" variant="outline" />
         )}
       </footer>
     </article>
+  )
+}
+
+/** Botón de enlace del proyecto; abre en pestaña nueva si sale del sitio. */
+function ProjectLink({
+  href,
+  icon: Icon,
+  label,
+  variant = 'primary',
+}: {
+  href: string
+  icon: LucideIcon
+  label: string
+  variant?: 'primary' | 'outline'
+}) {
+  const external = href.startsWith('http')
+
+  return (
+    <SketchButton
+      as="a"
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer noopener' : undefined}
+      variant={variant}
+      className="px-4 py-2.5"
+    >
+      <Icon size={16} /> {label}
+    </SketchButton>
   )
 }

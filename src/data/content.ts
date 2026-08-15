@@ -119,7 +119,10 @@ export const services = [
 
 /* -------------------------------------------------------------- Proyectos */
 
-export type ProjectCategory = 'Web' | 'App'
+export type ProjectCategory = 'Web' | 'App' | 'Escritorio'
+
+/** Captura de pantalla del proyecto, servida desde `public/`. */
+export type ProjectShot = { src: string; alt: string }
 
 export type Project = {
   id: string
@@ -130,22 +133,56 @@ export type Project = {
   description: string
   stack: string[]
   highlights: string[]
+  /** Diagrama de respaldo: sólo se dibuja si el proyecto no tiene capturas. */
   diagram: 'stack' | 'flow' | 'grid'
+  /** Si hay capturas reales, sustituyen al diagrama en la tarjeta. */
+  shots?: ProjectShot[]
   featured: boolean
-  links: { demo?: string; source?: string; docs?: string }
+  links: { demo?: string; download?: string; source?: string; docs?: string }
 }
 
-/**
- * TODO — REEMPLAZA ESTO POR TUS PROYECTOS REALES.
- *
- * Estas entradas son plantillas con tu stack, no proyectos que hayas hecho.
- * Cambia títulos, descripciones, logros y enlaces antes de publicar el sitio.
- * Para añadir o quitar proyectos basta con editar este array.
- */
 export const projects: Project[] = [
   {
-    id: 'proyecto-web-1',
+    id: 'printbatch',
     draft: 'Draft #01',
+    category: 'Escritorio',
+    title: 'PrintBatch',
+    summary:
+      'Aplicación de escritorio para Windows que imprime libretas en PDF por lotes y las alinea sola para el dúplex.',
+    description:
+      'Recorre una carpeta buscando PDFs, los lista con su número de páginas y los envía a la impresora en cola, con barra de progreso y controles de iniciar, pausar y detener. La pieza clave es la alineación automática a doble cara: a las libretas con páginas impares les añade una hoja en blanco, de modo que ninguna acabe compartiendo hoja con la del siguiente alumno. Todo el proceso ocurre en la máquina; no sale ningún dato fuera.',
+    stack: ['Python', 'customtkinter', 'pypdf', 'pywin32', 'PyInstaller'],
+    highlights: [
+      'Alineación automática para impresión a doble cara',
+      'Detecta las impresoras del sistema y abre su configuración nativa',
+      'Impresión silenciosa vía SumatraPDF cuando está instalado',
+      'Se pausa sola y avisa si la impresora da error',
+      'Instalador de Windows que no pide permisos de administrador',
+    ],
+    diagram: 'flow',
+    shots: [
+      {
+        src: '/assets/Escritorio/PantallaPrincipal.png',
+        alt: 'Ventana principal de PrintBatch: selector de carpeta raíz, elección de impresora, casilla de alineación a doble cara, tabla de libretas con nombre, ruta, páginas y estado, y los botones de iniciar, pausar y detener.',
+      },
+    ],
+    featured: true,
+    links: {
+      download: 'https://github.com/LuisKinnDC/PrintBatch/releases/tag/v1.0',
+      source: 'https://github.com/LuisKinnDC/PrintBatch',
+    },
+  },
+
+  /*
+   * TODO — REEMPLAZA LOS TRES SIGUIENTES POR PROYECTOS REALES.
+   *
+   * Son plantillas armadas con tu stack, no trabajos que hayas hecho. Cambia
+   * título, descripción, logros y enlaces, o bórralos: la rejilla y los filtros
+   * se adaptan solos a la cantidad de elementos que quede.
+   */
+  {
+    id: 'proyecto-web-1',
+    draft: 'Draft #02',
     category: 'Web',
     title: 'Sistema de gestión web',
     summary: 'Aplicación web con panel de administración y base de datos relacional.',
@@ -163,7 +200,7 @@ export const projects: Project[] = [
   },
   {
     id: 'proyecto-app-1',
-    draft: 'Draft #02',
+    draft: 'Draft #03',
     category: 'App',
     title: 'App Android nativa',
     summary: 'Aplicación móvil en Kotlin con almacenamiento en la nube.',
@@ -181,7 +218,7 @@ export const projects: Project[] = [
   },
   {
     id: 'proyecto-web-2',
-    draft: 'Draft #03',
+    draft: 'Draft #04',
     category: 'Web',
     title: 'Sitio web corporativo',
     summary: 'Sitio informativo con identidad visual propia diseñada en Inkscape.',
