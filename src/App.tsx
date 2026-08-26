@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackToTop } from '@/components/layout/BackToTop'
+import { Preloader } from '@/components/layout/Preloader'
 import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Skills } from '@/components/sections/Skills'
@@ -41,6 +42,8 @@ export default function App() {
 
   return (
     <>
+      <Preloader />
+
       <a
         href="#contenido"
         className="bg-highlighter text-on-highlighter text-label border-ink sr-only border-2 px-4 py-2 uppercase focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-100"
