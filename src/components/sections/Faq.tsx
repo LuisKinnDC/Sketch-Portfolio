@@ -12,7 +12,7 @@ export function Faq() {
   return (
     <Section id="faq">
       <div className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <SectionHead
             eyebrow="// SECTION_08: FAQ"
             title="Preguntas frecuentes"
@@ -21,7 +21,7 @@ export function Faq() {
           />
         </div>
 
-        <div className="lg:col-span-8">
+        <div className="min-w-0 lg:col-span-8">
           <ul className="border-ink border-t-2">
             {faqs.map((faq, i) => {
               const isOpen = open === i

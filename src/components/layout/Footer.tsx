@@ -22,7 +22,7 @@ export function Footer() {
 
       <div className="relative mx-auto w-full max-w-[var(--container-page)] px-4 py-16 md:px-10 lg:px-16">
         <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
+          <div className="min-w-0 md:col-span-5">
             <h2 className="text-headline">{profile.shortName}</h2>
             <SketchRule className="mt-1 max-w-[180px]" width={180} />
             <p className="text-ink-soft mt-4 max-w-sm text-sm">{profile.role}</p>
@@ -31,7 +31,7 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="md:col-span-3" aria-label="Navegación del pie">
+          <nav className="min-w-0 md:col-span-3" aria-label="Navegación del pie">
             <h3 className="text-label text-ink-faint mb-4 uppercase">Secciones</h3>
             <ul className="space-y-2.5">
               {navItems.map((item) => (
@@ -47,7 +47,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-4">
+          <div className="min-w-0 md:col-span-4">
             <h3 className="text-label text-ink-faint mb-4 uppercase">Encuéntrame</h3>
             <ul className="space-y-3">
               {socials.map((s) => {

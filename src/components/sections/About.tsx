@@ -37,7 +37,7 @@ export function About() {
 
       <div className="grid gap-12 lg:grid-cols-12">
         {/* --------------------------------------------------------- Narrativa */}
-        <div className="lg:col-span-7">
+        <div className="min-w-0 lg:col-span-7">
           <div className="space-y-5">
             {aboutParagraphs.map((p, i) => (
               <Reveal key={i} delay={i * 0.08}>
@@ -65,7 +65,7 @@ export function About() {
         </div>
 
         {/* ------------------------------------------------------ Ficha lateral */}
-        <div className="lg:col-span-5">
+        <div className="min-w-0 lg:col-span-5">
           <Reveal from="right">
             <div className="relative mx-auto max-w-sm">
               <ClipDoodle className="text-ink-faint absolute -top-7 left-1/2 z-10 -translate-x-1/2" />
@@ -96,8 +96,12 @@ export function About() {
                 </dl>
               </div>
 
-              {/* Cinta decorativa en la esquina */}
-              <div className="bg-blueprint/20 border-blueprint/30 pointer-events-none absolute -top-3 -right-5 h-10 w-24 rotate-12 border backdrop-blur-sm" />
+              {/*
+                Cinta decorativa en la esquina. El vuelo sale del contenedor a
+                propósito, pero en móvil la ficha ya ocupa todo el ancho, así
+                que a -right-5 se salía de la pantalla y abría scroll lateral.
+              */}
+              <div className="bg-blueprint/20 border-blueprint/30 pointer-events-none absolute -top-3 -right-1 h-10 w-24 rotate-12 border backdrop-blur-sm sm:-right-5" />
             </div>
           </Reveal>
         </div>

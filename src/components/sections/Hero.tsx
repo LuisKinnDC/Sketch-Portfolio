@@ -18,7 +18,7 @@ export function Hero() {
         className="mx-auto grid w-full max-w-[var(--container-page)] items-center gap-12 px-4 py-16 md:px-10 md:py-24 lg:grid-cols-12 lg:px-16"
       >
         {/* ------------------------------------------------------- Columna texto */}
-        <div className="lg:col-span-7">
+        <div className="min-w-0 lg:col-span-7">
           <Reveal from="left">
             <span className="bg-ink text-paper text-label inline-block -rotate-2 px-3 py-1.5 uppercase">
               {profile.badge}
@@ -85,7 +85,7 @@ export function Hero() {
         </div>
 
         {/* ------------------------------------------------------ Columna retrato */}
-        <div className="relative lg:col-span-5">
+        <div className="relative min-w-0 lg:col-span-5">
           <Reveal from="right" delay={0.2}>
             <div className="group relative mx-auto max-w-md">
               <div className="sketch-frame bg-paper-raised relative aspect-square rotate-2 overflow-hidden shadow-[8px_8px_0_0_var(--color-ink)] transition-transform duration-500 group-hover:rotate-0">
