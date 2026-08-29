@@ -1,4 +1,4 @@
-# Portafolio — Luis Kinder Flores De La Cruz
+# Portafolio — LuisKinnDC
 
 Portafolio personal con estética **"Engineer's Sketchbook"**: boceto a mano sobre papel
 milimetrado, tinta negra con sombra dura, marcador amarillo y azul de plano técnico.
