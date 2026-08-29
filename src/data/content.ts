@@ -224,6 +224,16 @@ export const projects: Project[] = [
       'Publicada en Google Play',
     ],
     diagram: 'flow',
+    shots: [
+      {
+        src: '/assets/App/splash.png',
+        alt: 'Pantalla de inicio de WasiJob con el logotipo —una casa que cobija a una persona y un maletín— sobre el eslogan «Tu chamba y cuartito al toque», una barra de progreso y el texto «Iniciando…».',
+      },
+      {
+        src: '/assets/App/login.png',
+        alt: 'Pantalla de acceso de WasiJob: botón «Continuar con Google», enlace a los términos y la política de privacidad, y opción «Explorar como invitado» que permite ver anuncios sin iniciar sesión.',
+      },
+    ],
     featured: true,
     links: { download: 'https://play.google.com/store/apps/details?id=com.wasijob.app' },
   },
