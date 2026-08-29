@@ -5,7 +5,7 @@
 
 export const profile = {
   name: 'Luis Kinder Flores De La Cruz',
-  shortName: 'Luis Kinder',
+  shortName: 'LuisKinnDC',
   initials: 'L.K.F.D.L.C.',
   role: 'Desarrollador Web & Android Nativo',
   badge: 'Ing. de Sistemas de Información',

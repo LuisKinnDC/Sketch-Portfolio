@@ -48,10 +48,10 @@ export const skillGroups: SkillGroup[] = [
     title: 'Lenguajes & Backend',
     note: 'El motor',
     skills: [
-      { name: 'Java', level: 85 },
-      { name: 'Spring Boot', level: 78 },
-      { name: 'Python', level: 75 },
-      { name: 'TypeScript', level: 80 },
+      { name: 'Java', level: 65 },
+      { name: 'Spring Boot', level: 68 },
+      { name: 'Python', level: 45 },
+      { name: 'TypeScript', level: 70 },
     ],
   },
   {
@@ -61,8 +61,8 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'Kotlin', level: 82 },
       { name: 'Android Studio', level: 80 },
-      { name: 'HTML5 / CSS3', level: 85 },
-      { name: 'JavaScript', level: 78 },
+      { name: 'HTML5 / CSS3', level: 75 },
+      { name: 'JavaScript', level: 68 },
     ],
   },
   {
@@ -80,10 +80,10 @@ export const skillGroups: SkillGroup[] = [
     title: 'Herramientas & Método',
     note: 'El taller',
     skills: [
-      { name: 'Git / GitHub', level: 85 },
+      { name: 'Git / GitHub', level: 65 },
       { name: 'VS Code', level: 88 },
       { name: 'Inkscape', level: 80 },
-      { name: 'Scrum', level: 75 },
+      { name: 'Scrum', level: 65 },
     ],
   },
 ]
@@ -144,7 +144,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'printbatch',
-    draft: 'Draft #01',
+    draft: 'Borrador #01',
     category: 'Escritorio',
     title: 'PrintBatch',
     summary:
@@ -182,7 +182,7 @@ export const projects: Project[] = [
    */
   {
     id: 'proyecto-web-1',
-    draft: 'Draft #02',
+    draft: 'Borrador #02',
     category: 'Web',
     title: 'Sistema de gestión web',
     summary: 'Aplicación web con panel de administración y base de datos relacional.',
@@ -200,7 +200,7 @@ export const projects: Project[] = [
   },
   {
     id: 'proyecto-app-1',
-    draft: 'Draft #03',
+    draft: 'Borrador #03',
     category: 'App',
     title: 'App Android nativa',
     summary: 'Aplicación móvil en Kotlin con almacenamiento en la nube.',
@@ -218,7 +218,7 @@ export const projects: Project[] = [
   },
   {
     id: 'proyecto-web-2',
-    draft: 'Draft #04',
+    draft: 'Borrador #04',
     category: 'Web',
     title: 'Sitio web corporativo',
     summary: 'Sitio informativo con identidad visual propia diseñada en Inkscape.',
