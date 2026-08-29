@@ -131,7 +131,10 @@ function Lightbox({
             transition={{ duration: reduced ? 0 : 0.2 }}
             // Evita que un clic sobre la propia imagen cierre la ampliación.
             onClick={(e) => e.stopPropagation()}
-            className="border-paper max-h-full max-w-full border-4 object-contain shadow-[10px_10px_0_0_rgba(0,0,0,0.35)]"
+            // Se topa con el viewport (no con `max-h-full`): dentro de un grid el
+            // ítem tiene `min-height: auto` y toma como suelo su altura intrínseca,
+            // así que una captura muy alta ignoraría `max-h-full` y desbordaría.
+            className="border-paper max-h-[88dvh] max-w-[92vw] border-4 object-contain shadow-[10px_10px_0_0_rgba(0,0,0,0.35)]"
           />
 
           <button
